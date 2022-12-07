@@ -46,6 +46,30 @@ type ClientConfig struct {
 	Idemix     api.Idemix
 }
 
+// Likes `Enroll`. But getting the user information from the request header
+func (c *ClientConfig) EnrollWithIAM(rawurl, home string) (*EnrollmentResponse, error) {
+	purl, err := url.Parse(rawurl)
+	if err != nil {
+		return nil, err
+	}
+	username, ok := c.Enrollment.Headers["iam-user"]
+	if !ok {
+		return nil, fmt.Errorf("can't get iam username")
+	}
+	peeroOrOrder, ok := c.Enrollment.Headers["iam-peer-order-id"]
+	if ok {
+		username = peeroOrOrder
+	}
+
+	c.Enrollment.Name = username
+	c.Enrollment.CAName = c.CAName
+	c.URL = purl.String()
+	c.TLS.Enabled = purl.Scheme == "https"
+	c.Enrollment.CSR = &c.CSR
+	client := &Client{HomeDir: home, Config: c}
+	return client.Enroll(&c.Enrollment)
+}
+
 // Enroll a client given the server's URL and the client's home directory.
 // The URL may be of the form: http://user:pass@host:port where user and pass
 // are the enrollment ID and secret, respectively.

@@ -75,7 +75,58 @@ func newServerRequestContext(r *http.Request, w http.ResponseWriter, se *serverE
 		req:      r,
 		resp:     w,
 		endpoint: se,
+		ca:       &se.Server.CA,
 	}
+}
+
+// IAMAuth, support user and peer, order enroll.
+func (ctx *serverRequestContextImpl) IAMAuth() (string, error) {
+	r := ctx.req
+
+	username := r.Header.Get("iam-user")
+	token := r.Header.Get("iam-token")
+	peerOrOrderId := r.Header.Get("iam-peer-order-id")
+	log.Debugf("username: %s, token: %.10s, peerOrderId: %s\n", username, token, peerOrOrderId)
+	ca, err := ctx.GetCA()
+	if err != nil {
+		return "", err
+	}
+	// Error if max enrollments is disabled for this CA
+	log.Debugf("ca.Config: %+v", ca.Config)
+	caMaxEnrollments := ca.Config.Registry.MaxEnrollments
+	if caMaxEnrollments == 0 {
+		return "", caerrors.NewAuthenticationErr(caerrors.ErrEnrollDisabled, "Enroll is disabled")
+	}
+	// Get the user info object for this user
+	if peerOrOrderId != "" {
+		ctx.ui, err = ca.registry.GetUser(username+":"+token, []string{peerOrOrderId})
+	} else {
+		ctx.ui, err = ca.registry.GetUser(username+":"+token, nil)
+	}
+	if err != nil {
+		return "", caerrors.NewAuthenticationErr(caerrors.ErrInvalidUser, "Failed to get user: %s", err)
+	}
+
+	attempts := ctx.ui.GetFailedLoginAttempts()
+	allowedAttempts := ca.Config.Cfg.Identities.PasswordAttempts
+	if allowedAttempts > 0 {
+		if attempts == ca.Config.Cfg.Identities.PasswordAttempts {
+			msg := fmt.Sprintf("Incorrect password entered %d times, max incorrect password limit of %d reached", attempts, ca.Config.Cfg.Identities.PasswordAttempts)
+			log.Errorf(msg)
+			return "", caerrors.NewHTTPErr(401, caerrors.ErrPasswordAttempts, msg)
+		}
+	}
+
+	ctx.caller = ctx.ui
+	ctx.enrollmentID = username
+	log.Debugf("default enrollmentID: %s\n", ctx.enrollmentID)
+	if peerOrOrderId != "" {
+		log.Debugf("set enrollmentID: %s\n", peerOrOrderId)
+		ctx.enrollmentID = peerOrOrderId
+		return peerOrOrderId, nil
+	}
+
+	return username, nil
 }
 
 // BasicAuthentication authenticates the caller's username and password
@@ -291,14 +342,17 @@ func (ctx *serverRequestContextImpl) GetAttrExtension(attrReqs []*api.AttributeR
 	if err != nil {
 		return nil, err
 	}
-	ui, err := ca.registry.GetUser(ctx.enrollmentID, nil)
+	if ctx.caller == nil {
+		ctx.caller, err = ca.registry.GetUser(ctx.enrollmentID, nil)
+		if err != nil {
+			return nil, err
+		}
+	}
+	allAttrs, err := ctx.caller.GetAttributes(nil)
 	if err != nil {
 		return nil, err
 	}
-	allAttrs, err := ui.GetAttributes(nil)
-	if err != nil {
-		return nil, err
-	}
+	log.Debugf("Get Attrs %v\n", allAttrs)
 	if attrReqs == nil {
 		attrReqs = getDefaultAttrReqs(allAttrs)
 		if attrReqs == nil {
@@ -313,6 +367,7 @@ func (ctx *serverRequestContextImpl) GetAttrExtension(attrReqs []*api.AttributeR
 	if err != nil {
 		return nil, err
 	}
+	log.Debugf("Attrs : %v\n", attrs)
 	if attrs != nil {
 		buf, err := json.Marshal(attrs)
 		if err != nil {

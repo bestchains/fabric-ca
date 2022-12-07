@@ -350,7 +350,14 @@ func (c *Client) handleX509Enroll(req *api.EnrollmentRequest) (*EnrollmentRespon
 	if err != nil {
 		return nil, err
 	}
-	post.SetBasicAuth(req.Name, req.Secret)
+	// The enrolled client sets the request header of the request.
+	if req.IAMEnroll {
+		for k, v := range req.Headers {
+			post.Header.Add(k, v)
+		}
+	} else {
+		post.SetBasicAuth(req.Name, req.Secret)
+	}
 	var result api.EnrollmentResponseNet
 	err = c.SendReq(post, &result)
 	if err != nil {
@@ -362,11 +369,11 @@ func (c *Client) handleX509Enroll(req *api.EnrollmentRequest) (*EnrollmentRespon
 }
 
 // Handles enrollment request for an Idemix credential
-// 1. Sends a request with empty body to the /api/v1/idemix/credentail REST endpoint
-//    of the server to get a Nonce from the CA
-// 2. Constructs a credential request using the nonce, CA's idemix public key
-// 3. Sends a request with the CredentialRequest object in the body to the
-//    /api/v1/idemix/credentail REST endpoint to get a credential
+//  1. Sends a request with empty body to the /api/v1/idemix/credentail REST endpoint
+//     of the server to get a Nonce from the CA
+//  2. Constructs a credential request using the nonce, CA's idemix public key
+//  3. Sends a request with the CredentialRequest object in the body to the
+//     /api/v1/idemix/credentail REST endpoint to get a credential
 func (c *Client) handleIdemixEnroll(req *api.EnrollmentRequest) (*EnrollmentResponse, error) {
 	log.Debugf("Getting nonce from CA %s", req.CAName)
 	reqNet := &api.IdemixEnrollmentRequestNet{

@@ -46,6 +46,10 @@ func register(ctx ServerRequestContext, ca *CA) (interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
+	// IAM don't support registry action.
+	if ca.Config.IAM.Enabled {
+		return nil, caerrors.NewHTTPErr(403, caerrors.ErrInvalidLDAPAction, "Registration is not supported when using IAM")
+	}
 	// Authenticate
 	callerID, err := ctx.TokenAuthentication()
 	if err != nil {

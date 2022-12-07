@@ -12,6 +12,7 @@ import (
 	"github.com/cloudflare/cfssl/config"
 	"github.com/hyperledger/fabric-ca/api"
 	dbutil "github.com/hyperledger/fabric-ca/lib/server/db/util"
+	"github.com/hyperledger/fabric-ca/lib/server/iam"
 	"github.com/hyperledger/fabric-ca/lib/server/idemix"
 	"github.com/hyperledger/fabric-ca/lib/server/ldap"
 	"github.com/hyperledger/fabric-ca/lib/tls"
@@ -87,6 +88,10 @@ type CAConfig struct {
 	Registry     CAConfigRegistry
 	Affiliations map[string]interface{}
 	LDAP         ldap.Config
+	// IAM config
+	IAM iam.Config `yaml:"iam"`
+	// Ca Organization,This parameter is required for IAM initialization. Identifies the organization to which the CA belongs.
+	Organization string `yaml:"organization" help:"organization id"`
 	DB           CAConfigDB
 	CSP          *factory.FactoryOpts `yaml:"bccsp" mapstructure:"bccsp" hide:"true"`
 	// Optional client config for an intermediate server which acts as a client
