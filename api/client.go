@@ -72,6 +72,12 @@ type EnrollmentRequest struct {
 	// The type of the enrollment request: x509 or idemix
 	// The default is a request for an X509 enrollment certificate
 	Type string `def:"x509" help:"The type of enrollment request: 'x509' or 'idemix'"`
+
+	// To connect to iam, you need to bring some request header information,
+	// such as iam-user, iam-token, iam-peer-order-id, etc. to assist iam authentication.
+	Headers map[string]string `json:"headers,omitempty" help:"iam headers"`
+	// If you are interfacing with iam and performing an enroll action, you need to add a change parameter
+	IAMEnroll bool `json:"iamenroll,omitempty" help:"is iam server enabled"`
 }
 
 func (er EnrollmentRequest) String() string {

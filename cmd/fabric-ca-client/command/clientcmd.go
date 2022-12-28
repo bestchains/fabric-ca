@@ -89,6 +89,12 @@ type ClientCmd struct {
 	// cfgAttrReqs are the attribute requests specified via flags or env variables
 	// and translated to the AttrReqs field in enrollment
 	cfgAttrReqs []string
+
+	// The request header format is as follows: iam-user=abc,iam-token=def
+	cfgHeaders []string
+	// If you are interfacing with iam and performing an enroll action, you need to add a change parameter
+	iamEnroll bool
+
 	// cfgCsrNames are the certificate signing request names specified via flags
 	// or env variables
 	cfgCsrNames []string
@@ -199,6 +205,9 @@ func (c *ClientCmd) registerFlags() {
 		"Hostname to include in the certificate signing request during enrollment")
 	pflags.StringSliceVarP(
 		&c.cfgCsrNames, "csr.names", "", nil, "A list of comma-separated CSR names of the form <name>=<value> (e.g. C=CA,O=Org1)")
+
+	pflags.StringSliceVarP(&c.cfgHeaders, "iam.headers", "", nil, "iam headers")
+	pflags.BoolVarP(&c.iamEnroll, "iam.enroll", "", false, "iam enroll")
 
 	c.clientCfg = &lib.ClientConfig{}
 	tags := map[string]string{

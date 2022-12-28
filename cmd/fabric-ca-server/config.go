@@ -194,6 +194,15 @@ db:
         certfile:
         keyfile:
 
+iam:
+  enabled: false
+  url: https://iam-server.svc.cluster.local
+  tls:
+    certfiles:
+    client:
+      certfile:
+      keyfile:
+      
 #############################################################################
 #  LDAP section
 #  If LDAP is enabled, the fabric-ca-server calls LDAP to:
@@ -630,7 +639,10 @@ func (s *ServerCmd) createDefaultConfigFile() error {
 	// by using LDAP authentication; therefore, no bootstrap username and password
 	// are required.
 	ldapEnabled := s.myViper.GetBool("ldap.enabled")
-	if !ldapEnabled {
+	iamEnabled := s.myViper.GetBool("iam.enabled")
+
+	// When both iam and ldap are not on, only then go back to the configuration logic that needs to be done
+	if !ldapEnabled && !iamEnabled {
 		// When LDAP is disabled, the fabric-ca-server functions as its own
 		// identity registry; therefore, we require that the default configuration
 		// file have a bootstrap username and password that is used to enroll a

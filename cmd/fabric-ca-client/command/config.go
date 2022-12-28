@@ -289,6 +289,14 @@ func (c *ClientCmd) ConfigInit() error {
 		return err
 	}
 
+	// Set the parameters needed for IAM enrollment
+	c.clientCfg.Enrollment.IAMEnroll = c.iamEnroll
+	if c.iamEnroll {
+		if err = processIAMEnable(c.cfgHeaders, c.clientCfg); err != nil {
+			return err
+		}
+	}
+
 	err = processAttributeRequests(c.cfgAttrReqs, c.clientCfg)
 	if err != nil {
 		return err
@@ -343,7 +351,9 @@ func (c *ClientCmd) createDefaultConfigFile() error {
 
 	user := ""
 	var err error
-	if c.requiresUser() {
+	// The original logic is guaranteed to be error-free,
+	// and currently IAM does not see the use of going in for this logic.
+	if c.requiresUser() && !c.iamEnroll {
 		user, _, err = util.GetUser(c.myViper)
 		if err != nil {
 			return err
@@ -359,6 +369,29 @@ func (c *ClientCmd) createDefaultConfigFile() error {
 
 	// Now write the file
 	return ioutil.WriteFile(c.cfgFileName, []byte(cfg), 0o755)
+}
+
+func processIAMEnable(cfgHeaders []string, cfg *lib.ClientConfig) error {
+	if len(cfgHeaders) == 0 {
+		return fmt.Errorf("to use iam, the request header parameter must be provided")
+	}
+
+	for _, header := range cfgHeaders {
+		if len(header) == 0 {
+			continue
+		}
+		kv := strings.Split(header, "=")
+		if len(kv) != 2 {
+			return errors.Errorf("Header '%s' is missing '=' ; it "+
+				"must be of the form <name>=<value>", header)
+		}
+		if cfg.Enrollment.Headers == nil {
+			cfg.Enrollment.Headers = make(map[string]string)
+		}
+		cfg.Enrollment.Headers[kv[0]] = kv[1]
+	}
+
+	return nil
 }
 
 // processAttributes parses attributes from command line or env variable

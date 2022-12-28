@@ -42,6 +42,7 @@ import (
 	"github.com/hyperledger/fabric-ca/lib/server/db/postgres"
 	"github.com/hyperledger/fabric-ca/lib/server/db/sqlite"
 	dbutil "github.com/hyperledger/fabric-ca/lib/server/db/util"
+	"github.com/hyperledger/fabric-ca/lib/server/iam"
 	idemix "github.com/hyperledger/fabric-ca/lib/server/idemix"
 	"github.com/hyperledger/fabric-ca/lib/server/ldap"
 	"github.com/hyperledger/fabric-ca/lib/server/user"
@@ -657,8 +658,8 @@ func (ca *CA) initDB(metrics *db.Metrics) error {
 		return errors.Wrap(err, "Failed to migrate database")
 	}
 
-	// If not using LDAP, migrate database if needed to latest version and load the users and affiliations table
-	if !ca.Config.LDAP.Enabled {
+	// If not using LDAP and IAM, migrate database if needed to latest version and load the users and affiliations table
+	if !ca.Config.LDAP.Enabled && !ca.Config.IAM.Enabled {
 		err = ca.loadUsersTable()
 		if err != nil {
 			log.Error(err)
@@ -702,6 +703,14 @@ func (ca *CA) initUserRegistry() error {
 	log.Debug("Initializing identity registry")
 	var err error
 	ldapCfg := &ca.Config.LDAP
+
+	// Dock the IAM and initialize the information about the IAM.
+	if ca.Config.IAM.Enabled {
+		iamCfg := &ca.Config.IAM
+		ca.registry = iam.NewIAMClient(iamCfg, ca.Config.Organization)
+		log.Infof("Successfylly initialized IAM client")
+		return nil
+	}
 
 	if ldapCfg.Enabled {
 		// Use LDAP for the user registry

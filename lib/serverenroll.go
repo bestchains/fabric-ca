@@ -68,7 +68,17 @@ func newReenrollEndpoint(s *Server) *serverEndpoint {
 
 // Handle an enroll request, guarded by basic authentication
 func enrollHandler(ctx *serverRequestContextImpl) (interface{}, error) {
-	id, err := ctx.BasicAuthentication()
+	var (
+		id  string
+		err error
+	)
+	// Goes to different logic depending on whether IAM is on or not.
+	// Note that here IAMAuth is not defined in the interface, but is a function of serverRequestContextImpl.
+	if ctx.ca.Config.IAM.Enabled {
+		id, err = ctx.IAMAuth()
+	} else {
+		id, err = ctx.BasicAuthentication()
+	}
 	if err != nil {
 		return nil, err
 	}

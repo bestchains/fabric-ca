@@ -7,11 +7,12 @@ SPDX-License-Identifier: Apache-2.0
 package command
 
 import (
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/cloudflare/cfssl/log"
+	"github.com/hyperledger/fabric-ca/lib"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 )
@@ -55,21 +56,30 @@ func (c *enrollCmd) runEnroll(cmd *cobra.Command, args []string) error {
 	log.Debug("Entered runEnroll")
 	cfgFileName := c.GetCfgFileName()
 	cfg := c.GetClientCfg()
-	resp, err := cfg.Enroll(cfg.URL, filepath.Dir(cfgFileName))
+	var (
+		resp *lib.EnrollmentResponse
+		err  error
+	)
+	if cfg.Enrollment.IAMEnroll {
+		resp, err = cfg.EnrollWithIAM(cfg.URL, filepath.Dir(cfgFileName))
+	} else {
+		resp, err = cfg.Enroll(cfg.URL, filepath.Dir(cfgFileName))
+	}
+	//resp, err := cfg.Enroll(cfg.URL, filepath.Dir(cfgFileName))
 	if err != nil {
 		return err
 	}
 
 	ID := resp.Identity
 
-	cfgFile, err := ioutil.ReadFile(cfgFileName)
+	cfgFile, err := os.ReadFile(cfgFileName)
 	if err != nil {
 		return errors.Wrapf(err, "Failed to read file at '%s'", cfgFileName)
 	}
 
 	cfgStr := strings.Replace(string(cfgFile), "<<<ENROLLMENT_ID>>>", ID.GetName(), 1)
 
-	err = ioutil.WriteFile(cfgFileName, []byte(cfgStr), 0644)
+	err = os.WriteFile(cfgFileName, []byte(cfgStr), 0644)
 	if err != nil {
 		return errors.Wrapf(err, "Failed to write file at '%s'", cfgFileName)
 	}
