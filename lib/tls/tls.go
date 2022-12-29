@@ -22,8 +22,8 @@ import (
 	"io/ioutil"
 	"time"
 
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/log"
-	"github.com/hyperledger/fabric-ca/util"
 	"github.com/hyperledger/fabric/bccsp"
 	"github.com/hyperledger/fabric/bccsp/factory"
 	"github.com/pkg/errors"

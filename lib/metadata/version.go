@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	db "github.com/hyperledger/fabric-ca/lib/server/db/util"
+	db "github.com/bestchains/fabric-ca/lib/server/db/util"
 	"github.com/pkg/errors"
 )
 

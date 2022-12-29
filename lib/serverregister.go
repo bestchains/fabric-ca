@@ -10,12 +10,12 @@ import (
 	"fmt"
 	"net/url"
 
+	"github.com/bestchains/fabric-ca/api"
+	"github.com/bestchains/fabric-ca/lib/attr"
+	"github.com/bestchains/fabric-ca/lib/caerrors"
+	"github.com/bestchains/fabric-ca/lib/server/user"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/log"
-	"github.com/hyperledger/fabric-ca/api"
-	"github.com/hyperledger/fabric-ca/lib/attr"
-	"github.com/hyperledger/fabric-ca/lib/caerrors"
-	"github.com/hyperledger/fabric-ca/lib/server/user"
-	"github.com/hyperledger/fabric-ca/util"
 
 	"github.com/pkg/errors"
 )

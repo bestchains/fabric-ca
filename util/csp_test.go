@@ -14,8 +14,8 @@ import (
 	"path/filepath"
 	"testing"
 
+	. "github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/csr"
-	. "github.com/hyperledger/fabric-ca/util"
 	"github.com/hyperledger/fabric/bccsp"
 	"github.com/hyperledger/fabric/bccsp/factory"
 	"github.com/stretchr/testify/assert"

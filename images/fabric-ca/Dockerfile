@@ -19,9 +19,9 @@ RUN apk add --no-cache \
 ADD . /build/fabric-ca
 WORKDIR /build/fabric-ca
 RUN go install -tags "${GO_TAGS}" -ldflags "${GO_LDFLAGS}" \
-	github.com/hyperledger/fabric-ca/cmd/fabric-ca-server \
+	github.com/bestchains/fabric-ca/cmd/fabric-ca-server \
 	&& go install -tags "${GO_TAGS}" -ldflags "${GO_LDFLAGS}" \
-	github.com/hyperledger/fabric-ca/cmd/fabric-ca-client
+	github.com/bestchains/fabric-ca/cmd/fabric-ca-client
 
 
 FROM alpine:${ALPINE_VER}

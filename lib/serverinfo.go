@@ -7,8 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 package lib
 
 import (
-	"github.com/hyperledger/fabric-ca/api"
-	"github.com/hyperledger/fabric-ca/lib/metadata"
+	"github.com/bestchains/fabric-ca/api"
+	"github.com/bestchains/fabric-ca/lib/metadata"
 )
 
 func newCAInfoEndpoint(s *Server) *serverEndpoint {

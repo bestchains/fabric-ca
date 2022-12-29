@@ -20,8 +20,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/command/mocks"
-	"github.com/hyperledger/fabric-ca/lib"
+	"github.com/bestchains/fabric-ca/cmd/fabric-ca-client/command/mocks"
+	"github.com/bestchains/fabric-ca/lib"
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"

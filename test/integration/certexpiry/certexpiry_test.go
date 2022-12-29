@@ -12,12 +12,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/bestchains/fabric-ca/cmd/fabric-ca-client/command"
+	"github.com/bestchains/fabric-ca/lib"
+	"github.com/bestchains/fabric-ca/lib/metadata"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/config"
 	"github.com/cloudflare/cfssl/log"
-	"github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/command"
-	"github.com/hyperledger/fabric-ca/lib"
-	"github.com/hyperledger/fabric-ca/lib/metadata"
-	"github.com/hyperledger/fabric-ca/util"
 )
 
 const (

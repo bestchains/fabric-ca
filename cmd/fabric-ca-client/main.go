@@ -19,7 +19,7 @@ package main
 import (
 	"os"
 
-	"github.com/hyperledger/fabric-ca/cmd/fabric-ca-client/command"
+	"github.com/bestchains/fabric-ca/cmd/fabric-ca-client/command"
 )
 
 // The fabric-ca client main

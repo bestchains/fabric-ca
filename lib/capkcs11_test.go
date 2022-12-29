@@ -13,7 +13,7 @@ import (
 	"os"
 	"testing"
 
-	dbutil "github.com/hyperledger/fabric-ca/lib/server/db/util"
+	dbutil "github.com/bestchains/fabric-ca/lib/server/db/util"
 	"github.com/hyperledger/fabric/bccsp/factory"
 	"github.com/hyperledger/fabric/bccsp/pkcs11"
 )

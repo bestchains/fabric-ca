@@ -15,12 +15,12 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hyperledger/fabric-ca/api"
-	"github.com/hyperledger/fabric-ca/lib"
-	"github.com/hyperledger/fabric-ca/lib/client/credential"
-	. "github.com/hyperledger/fabric-ca/lib/client/credential/x509"
-	"github.com/hyperledger/fabric-ca/lib/client/credential/x509/mocks"
-	"github.com/hyperledger/fabric-ca/util"
+	"github.com/bestchains/fabric-ca/api"
+	"github.com/bestchains/fabric-ca/lib"
+	"github.com/bestchains/fabric-ca/lib/client/credential"
+	. "github.com/bestchains/fabric-ca/lib/client/credential/x509"
+	"github.com/bestchains/fabric-ca/lib/client/credential/x509/mocks"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/hyperledger/fabric/bccsp/factory"
 	"github.com/stretchr/testify/assert"
 )

@@ -9,8 +9,8 @@ package api
 import (
 	"time"
 
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/csr"
-	"github.com/hyperledger/fabric-ca/util"
 )
 
 // RegistrationRequest for a new identity

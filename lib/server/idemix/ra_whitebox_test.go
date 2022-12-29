@@ -10,9 +10,9 @@ import (
 	"fmt"
 	"testing"
 
-	idemix "github.com/hyperledger/fabric-ca/lib/common/idemix"
-	"github.com/hyperledger/fabric-ca/lib/server/db"
-	"github.com/hyperledger/fabric-ca/util"
+	idemix "github.com/bestchains/fabric-ca/lib/common/idemix"
+	"github.com/bestchains/fabric-ca/lib/server/db"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/stretchr/testify/assert"
 )
 

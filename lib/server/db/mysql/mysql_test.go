@@ -11,9 +11,9 @@ import (
 	"errors"
 	"path/filepath"
 
-	"github.com/hyperledger/fabric-ca/lib/server/db/mysql"
-	"github.com/hyperledger/fabric-ca/lib/server/db/mysql/mocks"
-	"github.com/hyperledger/fabric-ca/lib/tls"
+	"github.com/bestchains/fabric-ca/lib/server/db/mysql"
+	"github.com/bestchains/fabric-ca/lib/server/db/mysql/mocks"
+	"github.com/bestchains/fabric-ca/lib/tls"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )

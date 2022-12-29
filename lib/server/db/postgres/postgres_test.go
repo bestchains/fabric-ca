@@ -10,9 +10,9 @@ import (
 	"context"
 	"path/filepath"
 
-	"github.com/hyperledger/fabric-ca/lib/server/db/postgres"
-	"github.com/hyperledger/fabric-ca/lib/server/db/postgres/mocks"
-	"github.com/hyperledger/fabric-ca/lib/tls"
+	"github.com/bestchains/fabric-ca/lib/server/db/postgres"
+	"github.com/bestchains/fabric-ca/lib/server/db/postgres/mocks"
+	"github.com/bestchains/fabric-ca/lib/tls"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/pkg/errors"

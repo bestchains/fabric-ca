@@ -39,7 +39,7 @@ main() {
     local packages=()
     while IFS= read -r pkg; do
         packages+=("$pkg");
-    done < <(list_and_filter "github.com/hyperledger/fabric-ca/...")
+    done < <(list_and_filter "github.com/bestchains/fabric-ca/...")
 
     run_tests "${packages[@]}"
     GO_TAGS="pkcs11" run_tests "${packages[@]}"
