@@ -13,10 +13,10 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/bestchains/fabric-ca/lib/server/db"
+	"github.com/bestchains/fabric-ca/lib/server/db/util"
+	"github.com/bestchains/fabric-ca/lib/tls"
 	"github.com/cloudflare/cfssl/log"
-	"github.com/hyperledger/fabric-ca/lib/server/db"
-	"github.com/hyperledger/fabric-ca/lib/server/db/util"
-	"github.com/hyperledger/fabric-ca/lib/tls"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq" // import to support Postgres
 	"github.com/pkg/errors"

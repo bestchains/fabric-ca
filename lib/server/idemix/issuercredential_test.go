@@ -15,10 +15,10 @@ import (
 	"testing"
 
 	idemix "github.com/IBM/idemix/bccsp/schemes/dlog/crypto"
+	cidemix "github.com/bestchains/fabric-ca/lib/common/idemix"
+	. "github.com/bestchains/fabric-ca/lib/server/idemix"
+	"github.com/bestchains/fabric-ca/lib/server/idemix/mocks"
 	proto "github.com/golang/protobuf/proto"
-	cidemix "github.com/hyperledger/fabric-ca/lib/common/idemix"
-	. "github.com/hyperledger/fabric-ca/lib/server/idemix"
-	"github.com/hyperledger/fabric-ca/lib/server/idemix/mocks"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 )

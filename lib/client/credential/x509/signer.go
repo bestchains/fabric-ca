@@ -10,8 +10,8 @@ import (
 	"crypto/x509"
 	"fmt"
 
-	"github.com/hyperledger/fabric-ca/lib/attrmgr"
-	"github.com/hyperledger/fabric-ca/util"
+	"github.com/bestchains/fabric-ca/lib/attrmgr"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/hyperledger/fabric/bccsp"
 	"github.com/pkg/errors"
 )

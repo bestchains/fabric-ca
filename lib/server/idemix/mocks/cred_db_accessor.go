@@ -3,8 +3,8 @@
 package mocks
 
 import (
-	db "github.com/hyperledger/fabric-ca/lib/server/db"
-	idemix "github.com/hyperledger/fabric-ca/lib/server/idemix"
+	db "github.com/bestchains/fabric-ca/lib/server/db"
+	idemix "github.com/bestchains/fabric-ca/lib/server/idemix"
 
 	mock "github.com/stretchr/testify/mock"
 )

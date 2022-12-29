@@ -7,9 +7,9 @@ SPDX-License-Identifier: Apache-2.0
 package idemix
 
 import (
+	"github.com/bestchains/fabric-ca/api"
+	"github.com/bestchains/fabric-ca/util"
 	proto "github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-ca/api"
-	"github.com/hyperledger/fabric-ca/util"
 	"github.com/pkg/errors"
 )
 

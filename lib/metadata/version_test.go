@@ -19,7 +19,7 @@ package metadata_test
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-ca/lib/metadata"
+	"github.com/bestchains/fabric-ca/lib/metadata"
 	"github.com/stretchr/testify/assert"
 )
 

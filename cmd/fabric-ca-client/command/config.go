@@ -15,16 +15,16 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/hyperledger/fabric-ca/lib/common/idemix"
+	"github.com/bestchains/fabric-ca/lib/common/idemix"
 	"github.com/spf13/viper"
 
+	"github.com/bestchains/fabric-ca/api"
+	"github.com/bestchains/fabric-ca/lib"
+	"github.com/bestchains/fabric-ca/lib/attr"
+	calog "github.com/bestchains/fabric-ca/lib/common/log"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/csr"
 	"github.com/cloudflare/cfssl/log"
-	"github.com/hyperledger/fabric-ca/api"
-	"github.com/hyperledger/fabric-ca/lib"
-	"github.com/hyperledger/fabric-ca/lib/attr"
-	calog "github.com/hyperledger/fabric-ca/lib/common/log"
-	"github.com/hyperledger/fabric-ca/util"
 	"github.com/pkg/errors"
 )
 

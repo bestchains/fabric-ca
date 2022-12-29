@@ -12,7 +12,7 @@ import (
 
 	idemix "github.com/IBM/idemix/bccsp/schemes/dlog/crypto"
 	math "github.com/IBM/mathlib"
-	cidemix "github.com/hyperledger/fabric-ca/lib/common/idemix"
+	cidemix "github.com/bestchains/fabric-ca/lib/common/idemix"
 	scheme "github.com/hyperledger/fabric/idemix"
 	"github.com/pkg/errors"
 )

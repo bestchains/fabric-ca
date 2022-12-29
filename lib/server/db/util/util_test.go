@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 package util_test
 
 import (
-	"github.com/hyperledger/fabric-ca/lib/server/db/util"
+	"github.com/bestchains/fabric-ca/lib/server/db/util"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 )

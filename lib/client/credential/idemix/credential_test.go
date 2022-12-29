@@ -19,11 +19,11 @@ import (
 
 	scheme "github.com/IBM/idemix/bccsp/schemes/dlog/crypto"
 	math "github.com/IBM/mathlib"
+	lib "github.com/bestchains/fabric-ca/lib"
+	. "github.com/bestchains/fabric-ca/lib/client/credential/idemix"
+	cidemix "github.com/bestchains/fabric-ca/lib/common/idemix"
+	"github.com/bestchains/fabric-ca/lib/server/idemix"
 	"github.com/golang/protobuf/proto"
-	lib "github.com/hyperledger/fabric-ca/lib"
-	. "github.com/hyperledger/fabric-ca/lib/client/credential/idemix"
-	cidemix "github.com/hyperledger/fabric-ca/lib/common/idemix"
-	"github.com/hyperledger/fabric-ca/lib/server/idemix"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -10,9 +10,9 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/hyperledger/fabric-ca/lib/server/db"
-	"github.com/hyperledger/fabric-ca/lib/server/db/mocks"
-	"github.com/hyperledger/fabric-ca/lib/server/db/util"
+	"github.com/bestchains/fabric-ca/lib/server/db"
+	"github.com/bestchains/fabric-ca/lib/server/db/mocks"
+	"github.com/bestchains/fabric-ca/lib/server/db/util"
 	"github.com/jmoiron/sqlx"
 	. "github.com/onsi/gomega"
 )

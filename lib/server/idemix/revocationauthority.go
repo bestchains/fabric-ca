@@ -13,10 +13,10 @@ import (
 
 	idemix "github.com/IBM/idemix/bccsp/schemes/dlog/crypto"
 	math "github.com/IBM/mathlib"
+	cidemix "github.com/bestchains/fabric-ca/lib/common/idemix"
+	"github.com/bestchains/fabric-ca/lib/server/db"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/log"
-	cidemix "github.com/hyperledger/fabric-ca/lib/common/idemix"
-	"github.com/hyperledger/fabric-ca/lib/server/db"
-	"github.com/hyperledger/fabric-ca/util"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 )

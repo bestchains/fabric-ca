@@ -17,11 +17,11 @@ import (
 	"regexp"
 	"testing"
 
+	"github.com/bestchains/fabric-ca/api"
+	"github.com/bestchains/fabric-ca/lib"
+	"github.com/bestchains/fabric-ca/lib/metadata"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/log"
-	"github.com/hyperledger/fabric-ca/api"
-	"github.com/hyperledger/fabric-ca/lib"
-	"github.com/hyperledger/fabric-ca/lib/metadata"
-	"github.com/hyperledger/fabric-ca/util"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )

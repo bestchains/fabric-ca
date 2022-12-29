@@ -15,10 +15,10 @@ import (
 	"testing"
 
 	math "github.com/IBM/mathlib"
+	idemix2 "github.com/bestchains/fabric-ca/lib/common/idemix"
+	"github.com/bestchains/fabric-ca/lib/server/db"
+	dbutil "github.com/bestchains/fabric-ca/lib/server/db/util"
 	"github.com/golang/protobuf/proto"
-	idemix2 "github.com/hyperledger/fabric-ca/lib/common/idemix"
-	"github.com/hyperledger/fabric-ca/lib/server/db"
-	dbutil "github.com/hyperledger/fabric-ca/lib/server/db/util"
 	"github.com/stretchr/testify/assert"
 )
 

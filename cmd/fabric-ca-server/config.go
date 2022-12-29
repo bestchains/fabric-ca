@@ -12,13 +12,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/hyperledger/fabric-ca/lib/common/idemix"
+	"github.com/bestchains/fabric-ca/lib/common/idemix"
 
+	"github.com/bestchains/fabric-ca/lib"
+	calog "github.com/bestchains/fabric-ca/lib/common/log"
+	"github.com/bestchains/fabric-ca/lib/metadata"
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/log"
-	"github.com/hyperledger/fabric-ca/lib"
-	calog "github.com/hyperledger/fabric-ca/lib/common/log"
-	"github.com/hyperledger/fabric-ca/lib/metadata"
-	"github.com/hyperledger/fabric-ca/util"
 	"github.com/pkg/errors"
 )
 

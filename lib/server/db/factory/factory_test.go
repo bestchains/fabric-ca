@@ -10,10 +10,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hyperledger/fabric-ca/lib/server/db/factory"
-	"github.com/hyperledger/fabric-ca/lib/server/db/mysql"
-	"github.com/hyperledger/fabric-ca/lib/server/db/postgres"
-	"github.com/hyperledger/fabric-ca/lib/server/db/sqlite"
+	"github.com/bestchains/fabric-ca/lib/server/db/factory"
+	"github.com/bestchains/fabric-ca/lib/server/db/mysql"
+	"github.com/bestchains/fabric-ca/lib/server/db/postgres"
+	"github.com/bestchains/fabric-ca/lib/server/db/sqlite"
 	. "github.com/onsi/gomega"
 )
 

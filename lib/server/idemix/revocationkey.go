@@ -12,8 +12,8 @@ import (
 	"encoding/pem"
 	"io/ioutil"
 
+	"github.com/bestchains/fabric-ca/util"
 	"github.com/cloudflare/cfssl/log"
-	"github.com/hyperledger/fabric-ca/util"
 	"github.com/pkg/errors"
 )
 

@@ -10,7 +10,7 @@ import (
 	"crypto/x509"
 	"testing"
 
-	"github.com/hyperledger/fabric-ca/lib/attrmgr"
+	"github.com/bestchains/fabric-ca/lib/attrmgr"
 	"github.com/stretchr/testify/assert"
 )
 

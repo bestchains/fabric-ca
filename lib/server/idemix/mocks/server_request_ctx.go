@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	user "github.com/hyperledger/fabric-ca/lib/server/user"
+	user "github.com/bestchains/fabric-ca/lib/server/user"
 	mock "github.com/stretchr/testify/mock"
 )
 

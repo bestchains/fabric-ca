@@ -9,9 +9,9 @@ package lib
 import (
 	"testing"
 
-	"github.com/hyperledger/fabric-ca/api"
-	clientcred "github.com/hyperledger/fabric-ca/lib/client/credential"
-	"github.com/hyperledger/fabric-ca/lib/client/credential/x509"
+	"github.com/bestchains/fabric-ca/api"
+	clientcred "github.com/bestchains/fabric-ca/lib/client/credential"
+	"github.com/bestchains/fabric-ca/lib/client/credential/x509"
 	"github.com/stretchr/testify/assert"
 )
 

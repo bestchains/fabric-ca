@@ -48,7 +48,7 @@ endif
 
 PG_VER=11
 
-PKGNAME = github.com/hyperledger/$(PROJECT_NAME)
+PKGNAME = github.com/bestchains/$(PROJECT_NAME)
 
 METADATA_VAR = Version=$(PROJECT_VERSION)
 

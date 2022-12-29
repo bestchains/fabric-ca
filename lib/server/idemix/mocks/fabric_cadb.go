@@ -3,7 +3,7 @@
 package mocks
 
 import context "context"
-import db "github.com/hyperledger/fabric-ca/lib/server/db"
+import db "github.com/bestchains/fabric-ca/lib/server/db"
 import mock "github.com/stretchr/testify/mock"
 import sql "database/sql"
 import sqlx "github.com/jmoiron/sqlx"
