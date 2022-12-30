@@ -22,7 +22,6 @@ import (
 	ctls "github.com/bestchains/fabric-ca/lib/tls"
 	"github.com/cloudflare/cfssl/log"
 	"github.com/jmoiron/sqlx"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 var errNotSupported = errors.New("not support")
@@ -50,9 +49,6 @@ type BlockchainAnnotation struct {
 	Organization string `json:"organization,omitempty"`
 	// IDs stores all Fabric-CA identities under this User's government
 	IDs                   map[string]ID `json:"ids,omitempty"`
-	CreationTimestamp     metav1.Time   `json:"creationTimestamp,omitempty"`
-	LastAppliedTimestamp  metav1.Time   `json:"lastAppliedTimestamp,omitempty"`
-	LastDeletionTimestamp metav1.Time   `json:"lastDeletionTimestamp,omitempty"`
 }
 
 type IDType string
@@ -69,16 +65,11 @@ type ID struct {
 	Name                 string            `json:"name"`
 	Type                 IDType            `json:"type"`
 	Attributes           map[string]string `json:"attributes,omitempty"`
-	CreationTimestamp    metav1.Time       `json:"creationTimestamp,omitempty"`
-	LastAppliedTimestamp metav1.Time       `json:"lastAppliedTimestamp,omitempty"`
 }
 
 type UserAnnotations struct {
 	// List stores User's BlockchainAnnotation in different organizations
 	List                    map[string]BlockchainAnnotation `json:"list,omitempty"`
-	CreationTimestamp       metav1.Time                     `json:"creationTimestamp,omitempty"`
-	LastAppliedTimestamp    metav1.Time                     `json:"lastAppliedTimestamp,omitempty"`
-	LastDeletetionTimestamp metav1.Time                     `json:"lastDeletetionTimestamp,omitempty"`
 }
 
 type iamClient struct {
